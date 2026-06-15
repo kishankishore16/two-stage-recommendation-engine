@@ -1,0 +1,6 @@
+data/raw/
+__pycache__/
+.git/
+notebooks/
+tests/
+*.md

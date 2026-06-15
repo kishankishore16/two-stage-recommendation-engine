@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon RecommendAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>Recommend<span>AI</span></h1>
+            <p>Discover products tailored to you</p>
+        </header>
+
+        <div class="search-section glass-panel">
+            <form id="recommend-form">
+                <div class="input-group">
+                    <label for="user-id">User ID</label>
+                    <input type="text" id="user-id" placeholder="e.g. test_user_123" required>
+                </div>
+                
+                <div class="advanced-settings">
+                    <div class="input-group small">
+                        <label for="num-results">Results</label>
+                        <input type="number" id="num-results" value="12" min="1" max="100">
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn">
+                    <span class="btn-text">Generate Recommendations</span>
+                    <span class="loader hidden"></span>
+                </button>
+            </form>
+        </div>
+
+        <div id="status-container" class="status-container hidden">
+            <!-- Timing stats will be injected here -->
+        </div>
+
+        <div id="results-grid" class="results-grid">
+            <!-- Product cards will be injected here -->
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

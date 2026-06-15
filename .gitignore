@@ -1,0 +1,15 @@
+data/
+__pycache__/
+*.pyc
+.env
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+*.index
+*.npy
+*.lgb
+*.pt
+.venv/
+.vscode/
+.idea/
