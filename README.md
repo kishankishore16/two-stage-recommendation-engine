@@ -1,6 +1,6 @@
 # Production Recommendation Engine
 
-A FAANG-grade two-stage recommendation engine using the Amazon Clothing, Shoes & Jewelry dataset.
+A two-stage recommendation engine using the Amazon Clothing, Shoes & Jewelry dataset.
 
 ## Architecture
 
