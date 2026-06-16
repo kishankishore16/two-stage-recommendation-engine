@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsGrid = document.getElementById('results-grid');
     const statusContainer = document.getElementById('status-container');
 
-    const API_URL = 'http://localhost:8000/recommend';
+    const API_URL = '/recommend';
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();

@@ -22,6 +22,7 @@ import pandas as pd
 import torch
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from src.config import get_config
 from src.serving.inference import RecommendationPipeline
@@ -176,3 +177,7 @@ app.add_middleware(
 
 # Mount the route module.
 app.include_router(router)
+
+# Mount the static frontend directory at root.
+frontend_dir = Path(__file__).resolve().parent.parent.parent / "frontend"
+app.mount("/", StaticFiles(directory=str(frontend_dir), html=True), name="static")

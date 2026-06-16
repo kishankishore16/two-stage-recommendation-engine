@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: recommendation-engine-backend
+    env: docker
+    plan: free
+    envVars:
+      - key: REDIS_HOST
+        fromService:
+          type: redis
+          name: recommendation-engine-redis
+          property: host
+      - key: REDIS_PORT
+        fromService:
+          type: redis
+          name: recommendation-engine-redis
+          property: port
+      - key: FAISS_INDEX_PATH
+        value: /app/data/faiss/items.index
+
+  - type: redis
+    name: recommendation-engine-redis
+    plan: free
+    ipAllowList: []
