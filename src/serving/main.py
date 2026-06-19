@@ -106,18 +106,9 @@ async def lifespan(app: FastAPI):
     if "item_id" in item_features_df.columns:
         item_features_df = item_features_df.set_index("item_id")
 
-    # Item metadata for display (asin, title, price, category).
-    meta_cols = [c for c in ("asin", "title", "price", "category") if c in item_features_df.columns]
-    if meta_cols:
-        item_metadata_df = item_features_df[meta_cols].copy()
-    else:
-        # Fallback: extract metadata from interactions if dropped during feature engineering
-        logger.info("Extracting metadata from interactions.parquet …")
-        interactions_df = pd.read_parquet(
-            paths.interactions_file, 
-            columns=["item_id", "asin", "title", "price", "category"]
-        )
-        item_metadata_df = interactions_df.drop_duplicates(subset=["item_id"]).set_index("item_id")
+    # Load lightweight item metadata
+    logger.info("Loading item metadata from %s", paths.item_metadata_file)
+    item_metadata_df = pd.read_parquet(paths.item_metadata_file).set_index("item_id")
 
     logger.info(
         "DataFrames loaded — %d users, %d items.",

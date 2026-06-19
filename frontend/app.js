@@ -6,7 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsGrid = document.getElementById('results-grid');
     const statusContainer = document.getElementById('status-container');
 
-    const API_URL = '/recommend';
+    // Dynamically resolve API URL:
+    // - On Render: Maps frontend host to backend host.
+    // - Locally: Maps standard client ports to backend port 8000.
+    let API_URL = '/recommend';
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        if (window.location.port !== '8000') {
+            API_URL = 'http://localhost:8000/recommend';
+        }
+    } else if (window.location.hostname.includes('onrender.com')) {
+        API_URL = window.location.origin.replace('-frontend', '-backend') + '/recommend';
+    }
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();

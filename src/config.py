@@ -30,6 +30,7 @@ class PathConfig:
 
     # Processed data files
     interactions_file: Path = PROJECT_ROOT / "data" / "processed" / "interactions.parquet"
+    item_metadata_file: Path = PROJECT_ROOT / "data" / "processed" / "item_metadata.parquet"
     user_features_file: Path = PROJECT_ROOT / "data" / "processed" / "user_features.parquet"
     item_features_file: Path = PROJECT_ROOT / "data" / "processed" / "item_features.parquet"
     train_file: Path = PROJECT_ROOT / "data" / "processed" / "train.parquet"
