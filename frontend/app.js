@@ -6,16 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsGrid = document.getElementById('results-grid');
     const statusContainer = document.getElementById('status-container');
 
-    // Dynamically resolve API URL:
-    // - On Render: Maps frontend host to backend host.
-    // - Locally: Maps standard client ports to backend port 8000.
+    // Resolve API URL: relative path works on Railway (frontend served by same FastAPI app).
+    // Only override for local dev when frontend is opened on a port other than 8000.
     let API_URL = '/recommend';
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        if (window.location.port !== '8000') {
-            API_URL = 'http://localhost:8000/recommend';
-        }
-    } else if (window.location.hostname.includes('onrender.com')) {
-        API_URL = window.location.origin.replace('-frontend', '-backend') + '/recommend';
+    if ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        && window.location.port && window.location.port !== '8000') {
+        API_URL = 'http://localhost:8000/recommend';
     }
 
     form.addEventListener('submit', async (e) => {

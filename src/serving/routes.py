@@ -111,7 +111,7 @@ async def health(request: Request) -> HealthResponse:
     ranker = getattr(request.app.state, "ranker_model", None)
     models_loaded = user_tower is not None and ranker is not None
 
-    status = "ok" if (redis_ok and models_loaded and faiss_size > 0) else "degraded"
+    status = "ok" if (models_loaded and faiss_size > 0) else "degraded"
 
     return HealthResponse(
         status=status,

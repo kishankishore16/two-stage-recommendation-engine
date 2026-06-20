@@ -37,7 +37,7 @@ python scripts/build_faiss_index.py
 python scripts/train_ranker.py
 ```
 
-### 4. Serving (Docker)
+### 4. Serving (Docker — Local)
 ```bash
 # Start Redis and the FastAPI application
 docker-compose up -d
@@ -53,11 +53,37 @@ curl -X POST http://localhost:8000/recommend \
   -d '{"user_id": "A1234", "num_results": 10}'
 ```
 
+## Deploy to Railway
+
+### Prerequisites
+- A [Railway](https://railway.app) account (sign up free with GitHub)
+- This repo pushed to GitHub
+
+### Steps
+
+1. **Go to [railway.app](https://railway.app)** → "New Project" → "Deploy from GitHub Repo"
+2. **Select this repository** from the list
+3. Railway auto-detects the `Dockerfile` and `railway.toml` and starts building
+4. Once deployed, click **"Generate Domain"** in Settings → Networking to get a public URL
+5. Visit `https://<your-app>.up.railway.app` to use the frontend
+6. Health check: `https://<your-app>.up.railway.app/health`
+
+### Environment Variables (auto-configured)
+- `PORT` — Injected automatically by Railway
+
+### Optional: Add Redis
+If you want caching, add a Redis plugin in the Railway dashboard and set:
+- `REDIS_HOST` → from the Redis plugin's connection details
+- `REDIS_PORT` → from the Redis plugin's connection details
+
+> The app runs fine without Redis — it logs a warning and falls back to in-memory features.
+
 ## Tech Stack
 *   **Data Processing:** pandas, pyarrow
 *   **Deep Learning:** PyTorch
 *   **Vector Database:** FAISS
 *   **Machine Learning:** LightGBM, scikit-learn
 *   **API Framework:** FastAPI, Uvicorn, Pydantic
-*   **Caching:** Redis (redis.asyncio)
+*   **Caching:** Redis (redis.asyncio) — optional
 *   **Containerization:** Docker, Docker Compose
+*   **Deployment:** Railway

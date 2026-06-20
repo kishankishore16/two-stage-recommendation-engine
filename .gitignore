@@ -1,4 +1,9 @@
-/data/
+/data/raw/
+/data/processed/interactions.parquet
+/data/processed/train.parquet
+/data/processed/test.parquet
+/data/processed/user_id_map.parquet
+/data/processed/item_id_map.parquet
 __pycache__/
 *.pyc
 .env
@@ -6,10 +11,6 @@ __pycache__/
 dist/
 build/
 .pytest_cache/
-*.index
-*.npy
-*.lgb
-*.pt
 .venv/
 .vscode/
 .idea/
